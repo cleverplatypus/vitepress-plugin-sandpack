@@ -6,6 +6,7 @@ import type { PropType } from 'vue';
 // node_modules/@codesandbox/sandpack-themes/dist/esm/index.d.ts
 export type Theme = keyof typeof allThemes;
 export type PropBool = boolean | 'true' | 'false' | '0' | '1';
+export type PropNumber = number | string;
 
 export interface SandpackOptions {
   /**
@@ -27,12 +28,12 @@ export interface SandpackOptions {
    * preview area height, default undefined
    * @default undefined
    */
-  previewHeight?: number;
+  previewHeight?: PropNumber;
   /**
    * editor area height, default undefined
    * @default undefined
    */
-  coderHeight?: number;
+  coderHeight?: PropNumber;
   /**
    * show route navigator in preview area
    * @default false
