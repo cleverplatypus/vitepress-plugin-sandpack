@@ -261,7 +261,7 @@ const sandboxProps = {
    * @default undefined
    */
   previewHeight: {
-    type: Number,
+    type: [Number, String],
     required: false,
     default: undefined,
   },
@@ -270,7 +270,7 @@ const sandboxProps = {
    * @default undefined
    */
   coderHeight: {
-    type: Number,
+    type: [Number, String],
     required: false,
     default: undefined,
   },
