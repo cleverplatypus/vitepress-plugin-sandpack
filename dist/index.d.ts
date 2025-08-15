@@ -94,12 +94,12 @@ required: boolean;
 default: boolean;
 };
 previewHeight: {
-type: NumberConstructor;
+type: (StringConstructor | NumberConstructor)[];
 required: boolean;
 default: undefined;
 };
 coderHeight: {
-type: NumberConstructor;
+type: (StringConstructor | NumberConstructor)[];
 required: boolean;
 default: undefined;
 };
@@ -220,12 +220,12 @@ required: boolean;
 default: boolean;
 };
 previewHeight: {
-type: NumberConstructor;
+type: (StringConstructor | NumberConstructor)[];
 required: boolean;
 default: undefined;
 };
 coderHeight: {
-type: NumberConstructor;
+type: (StringConstructor | NumberConstructor)[];
 required: boolean;
 default: undefined;
 };
@@ -319,8 +319,8 @@ customSetup: SandpackCustomSetup;
 codeOptions: string;
 autorun: PropBool;
 hideEditor: PropBool;
-previewHeight: number;
-coderHeight: number;
+previewHeight: string | number;
+coderHeight: string | number;
 showNavigator: PropBool;
 showLineNumbers: PropBool;
 showRefreshButton: PropBool;
@@ -408,7 +408,7 @@ export declare const sandboxProps: {
      * @default undefined
      */
     previewHeight: {
-        type: NumberConstructor;
+        type: (StringConstructor | NumberConstructor)[];
         required: boolean;
         default: undefined;
     };
@@ -417,7 +417,7 @@ export declare const sandboxProps: {
      * @default undefined
      */
     coderHeight: {
-        type: NumberConstructor;
+        type: (StringConstructor | NumberConstructor)[];
         required: boolean;
         default: undefined;
     };

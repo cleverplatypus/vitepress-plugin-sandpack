@@ -5,8 +5,8 @@ import { Sandpack as _ } from "sandpack-vue3";
 const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
   const t = {};
   return e.split(",").forEach((r) => {
-    let [s, o] = r.split(":");
-    s = B(s), o = B(o), t[s] = o;
+    let [s, i] = r.split(":");
+    s = B(s), i = B(i), t[s] = i;
   }), t;
 }, k = (e) => {
   let t = "/src/index.js";
@@ -39,28 +39,28 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
   return t;
 }, W = (e, t) => {
   let n;
-  const r = (e || "").split(" "), s = r.includes("[hidden]"), o = r.includes("[readonly]") || r.includes("[readOnly]"), l = r.includes("[active]"), c = r.find((i) => i.includes("."));
-  return c && (n = c, n = n === "App.vue" ? k(t) : n, n = n.startsWith("/") ? n : `/${n}`), { hidden: s, active: l, readOnly: o, path: n };
+  const r = (e || "").split(" "), s = r.includes("[hidden]"), i = r.includes("[readonly]") || r.includes("[readOnly]"), l = r.includes("[active]"), c = r.find((o) => o.includes("."));
+  return c && (n = c, n = n === "App.vue" ? k(t) : n, n = n.startsWith("/") ? n : `/${n}`), { hidden: s, active: l, readOnly: i, path: n };
 }, d = (e) => typeof e > "u" || String(e).trim() === "" ? !0 : ["false", "0"].includes(String(e).trim()) ? !1 : !!e, b = (e) => e ? typeof e == "string" ? M(e) : e : void 0, L = async (e, t) => {
   var l, c;
   const n = {}, r = t.default ? t.default() : [];
-  let s = r.filter((i) => i.type === "div") || [], o = 0;
+  let s = r.filter((o) => o.type === "div") || [], i = 0;
   if (Array.isArray(s)) {
     if (!s.length) {
-      const i = r ? (l = r[0]) == null ? void 0 : l.ctx : {};
-      i && (i != null && i.slots) && (s = (c = i.slots) != null && c.default ? i.slots.default() : []);
+      const o = r ? (l = r[0]) == null ? void 0 : l.ctx : {};
+      o && (o != null && o.slots) && (s = (c = o.slots) != null && c.default ? o.slots.default() : []);
     }
-    for await (const i of s) {
+    for await (const o of s) {
       let h = "", m = document.createElement("div");
-      const u = i.children || [], { active: f, hidden: a, readOnly: p, path: g } = W(JSON.parse(decodeURIComponent(e.codeOptions))[o], e.template), S = g || k(e.template), w = u.find((C) => C.type === "pre");
-      i.children = w ? [w] : [];
-      const x = await E(i);
+      const u = o.children || [], { active: f, hidden: a, readOnly: p, path: g } = W(JSON.parse(decodeURIComponent(e.codeOptions))[i], e.template), S = g || k(e.template), w = u.find((C) => C.type === "pre");
+      o.children = w ? [w] : [];
+      const x = await E(o);
       m.insertAdjacentHTML("beforeend", x), h = m.innerText, m = null, n[S] = {
         code: h,
         active: f,
         hidden: a,
         readOnly: p
-      }, o++;
+      }, i++;
     }
   }
   return n;
@@ -84,13 +84,13 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
     s in r && (["editorWidthPercentage"].includes(s) ? r.editorWidthPercentage = isNaN(Number(n[s])) ? 50 : Number(n[s]) : r[s] = d(n[s]));
   return r;
 }, z = (e) => {
-  const { deps: t, devDeps: n, entry: r, customSetup: s } = e, o = s && typeof s == "object" ? s : void 0, l = {
+  const { deps: t, devDeps: n, entry: r, customSetup: s } = e, i = s && typeof s == "object" ? s : void 0, l = {
     dependencies: void 0,
     devDependencies: void 0,
     entry: void 0,
     npmRegistries: void 0
   };
-  return (t || n || r) && (l.dependencies = b(t), l.devDependencies = b(n), l.entry = r || void 0), o && (l.dependencies = b(o.deps), l.devDependencies = b(o.devDeps), l.entry = o.entry, l.npmRegistries = o.npmRegistries), l;
+  return (t || n || r) && (l.dependencies = b(t), l.devDependencies = b(n), l.entry = r || void 0), i && (l.dependencies = b(i.deps), l.devDependencies = b(i.devDeps), l.entry = i.entry, l.npmRegistries = i.npmRegistries), l;
 }, U = {
   /**
    * light theme name
@@ -161,7 +161,7 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
    * @default undefined
    */
   previewHeight: {
-    type: Number,
+    type: [Number, String],
     required: !1,
     default: void 0
   },
@@ -170,7 +170,7 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
    * @default undefined
    */
   coderHeight: {
-    type: Number,
+    type: [Number, String],
     required: !1,
     default: void 0
   },
@@ -350,14 +350,14 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
   props: U,
   setup(e) {
     $((p) => ({
-      "8966ea8e": i.value,
+      "8966ea8e": o.value,
       a364191e: s.value,
       "07fe9e36": l.value
     }));
     const t = e, n = N({}), r = (p) => {
       var g;
       return t[p] ?? ((g = t == null ? void 0 : t.options) == null ? void 0 : g[p]);
-    }, s = v(() => d(r("hideEditor")) ? "none" : "flex"), o = v(() => isNaN(Number(r("previewHeight"))) ? void 0 : Number(r("previewHeight"))), l = v(() => o.value ? `${o.value}px` : "var(--sp-layout-height)"), c = v(() => isNaN(Number(r("coderHeight"))) ? void 0 : Number(r("coderHeight"))), i = v(() => c.value ? `${c.value}px` : "var(--sp-layout-height)"), h = j(), m = N(!1), u = v(
+    }, s = v(() => d(r("hideEditor")) ? "none" : "flex"), i = v(() => isNaN(Number(r("previewHeight"))) ? void 0 : Number(r("previewHeight"))), l = v(() => i.value ? `${i.value}px` : "var(--sp-layout-height)"), c = v(() => isNaN(Number(r("coderHeight"))) ? void 0 : Number(r("coderHeight"))), o = v(() => c.value ? `${c.value}px` : "var(--sp-layout-height)"), h = j(), m = N(!1), u = v(
       () => m.value ? q[r("darkTheme")] || "dark" : q[r("lightTheme")] || "light"
     ), f = async () => {
       n.value = await L(t, h);
@@ -391,16 +391,16 @@ const B = (e) => e.trim().replace(/'/g, "").replace(/"/g, ""), M = (e) => {
       break;
     }
   return n;
-}, X = (e, t, n) => ((s, o, l) => {
-  var c, i;
-  if (s[o].nesting === 1) {
+}, X = (e, t, n) => ((s, i, l) => {
+  var c, o;
+  if (s[i].nesting === 1) {
     const h = [];
-    for (let u = o + 1; s[u] && !(s[u].nesting === -1 && s[u].type === "container_sandbox_close"); ++u)
+    for (let u = i + 1; s[u] && !(s[u].nesting === -1 && s[u].type === "container_sandbox_close"); ++u)
       if (s[u].type === "fence" && s[u].tag === "code") {
         let f = "", a = ((c = s[u]) == null ? void 0 : c.info) || "";
         V(a) && (a.includes("prefix=") ? a = a.replace("prefix=", "").replace("[", "").replace("]", "") : a = a.replace("[", " /").replace("]", ""), f = a.substring(a.lastIndexOf(".") + 1), a = `${f} ${a}`, a.includes("#active") && (a = `${a.replace("#active", "")} [active]`), a.includes("#readOnly") && (a = `${a.replace("#readOnly", "")} [readOnly]`), a.includes("#hidden") && (a = `${a.replace("#hidden", "")} [hidden]`)), h.push(a);
       }
-    const m = ((i = s[o].attrs) == null ? void 0 : i.map(([u, f]) => f ? `${u}="${f}"` : u)) || [];
+    const m = ((o = s[i].attrs) == null ? void 0 : o.map(([u, f]) => f ? `${u}="${f}"` : u)) || [];
     return `<${O(l)} codeOptions="${encodeURIComponent(JSON.stringify(h))}" ${m.join(" ")}>`;
   }
   return `</${O(l)}>`;
