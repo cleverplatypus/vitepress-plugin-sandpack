@@ -61,7 +61,8 @@
     "prepare": "chmod a+x .husky/* && husky install",
     "prepublishOnly": "npm run build",
     "release": "bumpp --commit --tag --push",
-    "typecheck": "tsc && vue-tsc"
+    "typecheck": "tsc && vue-tsc",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@codesandbox/sandpack-themes": "^2.0.21",
